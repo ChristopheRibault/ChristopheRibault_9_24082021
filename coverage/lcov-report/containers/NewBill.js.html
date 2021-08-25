@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/29</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/29</span>
+                <span class='fraction'>0/32</span>
             </div>
         
             
@@ -119,7 +119,15 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -136,7 +144,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -148,6 +160,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -198,20 +214,28 @@ export default class NewBill {
 <span class="cstat-no" title="statement not covered" >    this.fileName = null</span>
 <span class="cstat-no" title="statement not covered" >    new Logout({ document, localStorage, onNavigate })</span>
   }
+&nbsp;
   handleChangeFile = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >e </span>=&gt; {</span>
     const file = <span class="cstat-no" title="statement not covered" >this.document.querySelector(`input[data-testid="file"]`).files[0]</span>
-    const filePath = <span class="cstat-no" title="statement not covered" >e.target.value.split(/\\/g)</span>
-    const fileName = <span class="cstat-no" title="statement not covered" >filePath[filePath.length-1]</span>
-<span class="cstat-no" title="statement not covered" >    this.firestore</span>
-      .storage
-      .ref(`justificatifs/${fileName}`)
-      .put(file)
-      .then(<span class="fstat-no" title="function not covered" >sn</span>apshot =&gt; <span class="cstat-no" title="statement not covered" >snapshot.ref.getDownloadURL())</span>
-      .then(<span class="fstat-no" title="function not covered" >ur</span>l =&gt; {
-<span class="cstat-no" title="statement not covered" >        this.fileUrl = url</span>
-<span class="cstat-no" title="statement not covered" >        this.fileName = fileName</span>
-      })
+    const type = <span class="cstat-no" title="statement not covered" >file.type.split('/')[0];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (type === 'image') {</span>
+      const filePath = <span class="cstat-no" title="statement not covered" >e.target.value.split(/\\/g)</span>
+      const fileName = <span class="cstat-no" title="statement not covered" >filePath[filePath.length-1]</span>
+<span class="cstat-no" title="statement not covered" >      this.firestore</span>
+        .storage
+        .ref(`justificatifs/${fileName}`)
+        .put(file)
+        .then(<span class="fstat-no" title="function not covered" >sn</span>apshot =&gt; <span class="cstat-no" title="statement not covered" >snapshot.ref.getDownloadURL())</span>
+        .then(<span class="fstat-no" title="function not covered" >ur</span>l =&gt; {
+<span class="cstat-no" title="statement not covered" >          this.fileUrl = url</span>
+<span class="cstat-no" title="statement not covered" >          this.fileName = fileName</span>
+        })
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.document.querySelector(`input[data-testid="file"]`).value = '';</span>
+    }
   }
+&nbsp;
   handleSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >e </span>=&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    e.preventDefault()</span>
     const email = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem("user")).email</span>
@@ -250,7 +274,7 @@ export default class NewBill {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Aug 25 2021 11:03:41 GMT+0200 (GMT+02:00)
+                at Wed Aug 25 2021 16:05:47 GMT+0200 (GMT+02:00)
             </div>
         </div>
         <script src="../prettify.js"></script>

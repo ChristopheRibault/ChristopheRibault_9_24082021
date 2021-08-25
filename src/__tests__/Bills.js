@@ -3,6 +3,8 @@ import BillsUI from "../views/BillsUI.js"
 import Bills from "../containers/Bills.js"
 import { bills } from "../fixtures/bills.js"
 import { localStorageMock } from "../__mocks__/localStorage"
+import ErrorPage from "./ErrorPage.js"
+import LoadingPage from "./LoadingPage.js"
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
@@ -18,6 +20,24 @@ describe("Given I am connected as an employee", () => {
       const antiChrono = (a, b) => ((a < b) ? 1 : -1)
       const datesSorted = [...dates].sort(antiChrono)
       expect(dates).toEqual(datesSorted)
+    })
+  })
+
+  describe("When bill page is loading", () => {
+    test("Then Loading page should be displayed", async () => {
+      const html = BillsUI({ data: [], loading: true })
+      document.body.innerHTML = html
+      const loader = await screen.findByTestId('loading')
+      expect(loader).toBeDefined()
+    })
+  })
+
+  describe("When bill page has error", () => {
+    test("Then arror page should be displayed", async () => {
+      const html = BillsUI({ data: [], error: new Error('Test error') })
+      document.body.innerHTML = html
+      const error = await screen.findByTestId('error-message')
+      expect(error).toBeDefined()
     })
   })
 })

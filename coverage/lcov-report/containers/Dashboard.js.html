@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">82.35% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>75/90</span>
+                <span class='fraction'>70/85</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.22% </span>
+                <span class="strong">81.4% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>37/45</span>
+                <span class='fraction'>35/43</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.74% </span>
+                <span class="strong">89.04% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>70/78</span>
+                <span class='fraction'>65/73</span>
             </div>
         
             
@@ -233,15 +233,7 @@
 <a name='L174'></a><a href='#L174'>174</a>
 <a name='L175'></a><a href='#L175'>175</a>
 <a name='L176'></a><a href='#L176'>176</a>
-<a name='L177'></a><a href='#L177'>177</a>
-<a name='L178'></a><a href='#L178'>178</a>
-<a name='L179'></a><a href='#L179'>179</a>
-<a name='L180'></a><a href='#L180'>180</a>
-<a name='L181'></a><a href='#L181'>181</a>
-<a name='L182'></a><a href='#L182'>182</a>
-<a name='L183'></a><a href='#L183'>183</a>
-<a name='L184'></a><a href='#L184'>184</a>
-<a name='L185'></a><a href='#L185'>185</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L177'></a><a href='#L177'>177</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -331,22 +323,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -515,23 +499,15 @@ export default class {
   handleEditTicket(e, bill, bills) {
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
-    if (this.counter % 2 === 0) {
-      bills.forEach(b =&gt; {
-        $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
-      })
-      $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })
-      $('.dashboard-right-container div').html(DashboardFormUI(bill))
-      $('.vertical-navbar').css({ height: '150vh' })
-      this.counter ++
-    } else {
-      $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
 &nbsp;
-      $('.dashboard-right-container div').html(`
-        &lt;div id="big-billed-icon"&gt; ${BigBilledIcon} &lt;/div&gt;
-      `)
-      $('.vertical-navbar').css({ height: '120vh' })
-      this.counter ++
-    }
+    bills.forEach(b =&gt; {
+      $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
+    })
+    $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })
+    $('.dashboard-right-container div').html(DashboardFormUI(bill))
+    $('.vertical-navbar').css({ height: '150vh' })
+    this.counter ++
+    
     $('#icon-eye-d').click(this.handleClickIconEye)
     $('#btn-accept-bill').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleAcceptSubmit(e, bill))</span>
     $('#btn-refuse-bill').click(<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >this.handleRefuseSubmit(e, bill))</span>
@@ -616,7 +592,7 @@ export default class {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Aug 25 2021 11:03:41 GMT+0200 (GMT+02:00)
+                at Wed Aug 25 2021 16:05:47 GMT+0200 (GMT+02:00)
             </div>
         </div>
         <script src="../prettify.js"></script>
