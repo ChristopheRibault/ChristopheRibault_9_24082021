@@ -23,15 +23,17 @@ export default class NewBill {
     if (type === 'image') {
       const filePath = e.target.value.split(/\\/g)
       const fileName = filePath[filePath.length-1]
-      this.firestore
-        .storage
-        .ref(`justificatifs/${fileName}`)
-        .put(file)
-        .then(snapshot => snapshot.ref.getDownloadURL())
-        .then(url => {
-          this.fileUrl = url
-          this.fileName = fileName
-        })
+      if(this.firestore) {
+        this.firestore
+          .storage
+          .ref(`justificatifs/${fileName}`)
+          .put(file)
+          .then(snapshot => snapshot.ref.getDownloadURL())
+          .then(url => {
+            this.fileUrl = url
+            this.fileName = fileName
+          })
+      }
     } else {
       this.document.querySelector(`input[data-testid="file"]`).value = '';
     }
