@@ -24,7 +24,7 @@ export default class {
     const billUrl = icon.getAttribute("data-bill-url")
     const imgWidth = Math.floor($('#modaleFile').width() * 0.5)
     $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;'><img width=${imgWidth} src=${billUrl} /></div>`)
-    $('#modaleFile').modal('show')
+    if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFile').modal('show')
   }
 
   getBills = () => {
@@ -38,10 +38,12 @@ export default class {
         const bills = snapshot.docs
           .map(doc => ({
             ...doc.data(),
+            dt: doc.data().date,
             date: formatDate(doc.data().date),
             status: formatStatus(doc.data().status)
           }))
           .filter(bill => bill.email === userEmail)
+          .sort((a, b) => a.dt < b.dt ? 1 : -1)
         console.log('bills', bills)
         return bills
       })

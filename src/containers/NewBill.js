@@ -15,20 +15,30 @@ export default class NewBill {
     this.fileName = null
     new Logout({ document, localStorage, onNavigate })
   }
+
   handleChangeFile = e => {
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
-    const filePath = e.target.value.split(/\\/g)
-    const fileName = filePath[filePath.length-1]
-    this.firestore
-      .storage
-      .ref(`justificatifs/${fileName}`)
-      .put(file)
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(url => {
-        this.fileUrl = url
-        this.fileName = fileName
-      })
+    const type = file.type.split('/')[0];
+
+    if (type === 'image') {
+      const filePath = e.target.value.split(/\\/g)
+      const fileName = filePath[filePath.length-1]
+      if(this.firestore) {
+        this.firestore
+          .storage
+          .ref(`justificatifs/${fileName}`)
+          .put(file)
+          .then(snapshot => snapshot.ref.getDownloadURL())
+          .then(url => {
+            this.fileUrl = url
+            this.fileName = fileName
+          })
+      }
+    } else {
+      this.document.querySelector(`input[data-testid="file"]`).value = '';
+    }
   }
+
   handleSubmit = e => {
     e.preventDefault()
     const email = JSON.parse(localStorage.getItem("user")).email

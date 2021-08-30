@@ -13,7 +13,7 @@ describe('Given I am connected as an Admin', () => {
   describe('When I am on Dashboard page, there are bills, and there is one pending', () => {
     test('Then, filteredBills by pending status should return 1 bill', () => {
       const filtered_bills = filteredBills(bills, "pending")
-      console.log(bills)
+      // console.log(bills)
       expect(filtered_bills.length).toBe(1)
     })
   })
@@ -208,10 +208,10 @@ describe('Given I am connected as Admin and I am on Dashboard page and I clicked
 describe("Given I am a user connected as Admin", () => {
   describe("When I navigate to Dashboard", () => {
     test("fetches bills from mock API GET", async () => {
-       const getSpy = jest.spyOn(firebase, "get")
-       const bills = await firebase.get()
-       expect(getSpy).toHaveBeenCalledTimes(1)
-       expect(bills.data.length).toBe(4)
+      const getSpy = jest.spyOn(firebase, "get")
+      const bills = await firebase.get()
+      expect(getSpy).toHaveBeenCalledTimes(1)
+      expect(bills.data.length).toBe(4)
     })
     test("fetches bills from an API and fails with 404 message error", async () => {
       firebase.get.mockImplementationOnce(() =>
