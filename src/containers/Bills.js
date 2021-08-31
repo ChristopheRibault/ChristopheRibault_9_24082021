@@ -39,11 +39,10 @@ export default class {
           .map(doc => ({
             ...doc.data(),
             dt: doc.data().date,
-            date: formatDate(doc.data().date),
+            formatedDate: formatDate(doc.data().date),
             status: formatStatus(doc.data().status)
           }))
           .filter(bill => bill.email === userEmail)
-          .sort((a, b) => a.dt < b.dt ? 1 : -1)
         console.log('bills', bills)
         return bills
       })
