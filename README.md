@@ -1,3 +1,19 @@
+# Billed
+
+**OpenClassrooms FrontEnd developer course**
+
+*Project 6*
+
+The purpose is to debug an axisting application and increase test covering.
+
+Technos:
+* Javascript
+* Jest
+
+
+
+Tasks :
+
 **How to run the App localy**:
 
 *clone the project*
